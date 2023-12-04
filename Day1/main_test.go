@@ -6,26 +6,26 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestGetCalibrationNumber_ReturnsNumbersFromLine(t *testing.T) {
+func TestGetcalibrationValue_ReturnsNumbersFromLine(t *testing.T) {
 	input := "1a2"
 
-	calibrationNumber := getCalibrationNumber(input)
+	calibrationValue := getcalibrationValue(input)
 
-	assert.Equal(t, 12, calibrationNumber)
+	assert.Equal(t, 12, calibrationValue)
 }
 
-func TestGetCalibrationNumber_ReturnsNumbersFromLineWithOneNumber(t *testing.T) {
+func TestGetcalibrationValue_ReturnsNumbersFromLineWithOneNumber(t *testing.T) {
 	input := "J7J"
 
-	calibrationNumber := getCalibrationNumber(input)
+	calibrationValue := getcalibrationValue(input)
 
-	assert.Equal(t, 7, calibrationNumber)
+	assert.Equal(t, 77, calibrationValue)
 }
 
-func TestGetCalibrationNumber_ReturnsNumbersFromLineWithManyNumbers(t *testing.T) {
+func TestGetcalibrationValue_ReturnsNumbersFromLineWithManyNumbers(t *testing.T) {
 	input := "iu23h4512n3j34uh8"
 
-	calibrationNumber := getCalibrationNumber(input)
+	calibrationValue := getcalibrationValue(input)
 
-	assert.Equal(t, 28, calibrationNumber)
+	assert.Equal(t, 28, calibrationValue)
 }
