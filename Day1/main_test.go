@@ -29,3 +29,17 @@ func TestGetcalibrationValue_ReturnsNumbersFromLineWithManyNumbers(t *testing.T)
 
 	assert.Equal(t, 28, calibrationValue)
 }
+
+func TestReplaceSpelledOutNumbersWithNumbers_ReturnsOnlyDigits(t *testing.T) {
+	input := "onetwothree"
+	formattedString := replaceSpelledOutNumbersWithNumbers(input)
+	assert.Equal(t, "123", formattedString)
+
+	input = "fourfivesix"
+	formattedString = replaceSpelledOutNumbersWithNumbers(input)
+	assert.Equal(t, "456", formattedString)
+
+	input = "seveneightnine"
+	formattedString = replaceSpelledOutNumbersWithNumbers(input)
+	assert.Equal(t, "789", formattedString)
+}

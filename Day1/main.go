@@ -30,6 +30,10 @@ func main() {
 	fmt.Printf("Sum of calibration values: %d\n", sumOfcalibrationValues)
 }
 
+func replaceSpelledOutNumbersWithNumbers(line string) string {
+
+}
+
 func getcalibrationValue(line string) int {
 	var firstNumber rune
 	var secondNumber rune
