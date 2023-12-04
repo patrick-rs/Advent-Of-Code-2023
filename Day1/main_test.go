@@ -58,4 +58,8 @@ func TestReplaceSpelledOutNumbersAndGetCalibrationValues(t *testing.T) {
 	input = "7pqrstsixteen"
 	calibrationValue = getcalibrationValue(input)
 	assert.Equal(t, 76, calibrationValue)
+
+	input = "oneight"
+	calibrationValue = getcalibrationValue(input)
+	assert.Equal(t, 18, calibrationValue)
 }
