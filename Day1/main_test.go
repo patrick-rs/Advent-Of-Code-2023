@@ -30,16 +30,32 @@ func TestGetcalibrationValue_ReturnsNumbersFromLineWithManyNumbers(t *testing.T)
 	assert.Equal(t, 28, calibrationValue)
 }
 
-func TestReplaceSpelledOutNumbersWithNumbers_ReturnsOnlyDigits(t *testing.T) {
-	input := "onetwothree"
-	formattedString := replaceSpelledOutNumbersWithNumbers(input)
-	assert.Equal(t, "123", formattedString)
+func TestReplaceSpelledOutNumbersAndGetCalibrationValues(t *testing.T) {
+	input := "two1nine"
+	calibrationValue := getcalibrationValue(input)
+	assert.Equal(t, 29, calibrationValue)
 
-	input = "fourfivesix"
-	formattedString = replaceSpelledOutNumbersWithNumbers(input)
-	assert.Equal(t, "456", formattedString)
+	input = "eightwothree"
+	calibrationValue = getcalibrationValue(input)
+	assert.Equal(t, 83, calibrationValue)
 
-	input = "seveneightnine"
-	formattedString = replaceSpelledOutNumbersWithNumbers(input)
-	assert.Equal(t, "789", formattedString)
+	input = "abcone2threexyz"
+	calibrationValue = getcalibrationValue(input)
+	assert.Equal(t, 13, calibrationValue)
+
+	input = "xtwone3four"
+	calibrationValue = getcalibrationValue(input)
+	assert.Equal(t, 24, calibrationValue)
+
+	input = "4nineeightseven2"
+	calibrationValue = getcalibrationValue(input)
+	assert.Equal(t, 42, calibrationValue)
+
+	input = "zoneight234"
+	calibrationValue = getcalibrationValue(input)
+	assert.Equal(t, 14, calibrationValue)
+
+	input = "7pqrstsixteen"
+	calibrationValue = getcalibrationValue(input)
+	assert.Equal(t, 76, calibrationValue)
 }
