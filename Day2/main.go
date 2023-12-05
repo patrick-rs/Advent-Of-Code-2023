@@ -11,6 +11,7 @@ import (
 
 func main() {
 	var sumOfValidGameNumbers int64
+	var sumOfGamePower int64
 
 	file, err := os.Open("input.txt")
 	if err != nil {
@@ -22,6 +23,9 @@ func main() {
 	for scanner.Scan() {
 		gameNumber := determineIfValidGame(scanner.Text())
 		sumOfValidGameNumbers += gameNumber
+
+		gamePower := calculateGamePower(scanner.Text())
+		sumOfGamePower += gamePower
 	}
 
 	if err := scanner.Err(); err != nil {
@@ -29,9 +33,46 @@ func main() {
 	}
 
 	fmt.Printf("Sum of valid game nubers: %d\n", sumOfValidGameNumbers)
+	fmt.Printf("Sum of game power: %d\n", sumOfGamePower)
 }
 
 func determineIfValidGame(line string) int64 {
+	gameNumber, games := getGameNumberAndGames(line)
+
+	for _, game := range games {
+		numberOfRed, numberOfGreen, numberOfBlue := getNumberOfRGBCubes(game)
+		if numberOfRed > 12 || numberOfGreen > 13 || numberOfBlue > 14 {
+			return 0
+		}
+	}
+
+	return gameNumber
+}
+
+func calculateGamePower(game string) int64 {
+	_, games := getGameNumberAndGames(game)
+	var maximumRed, maximumGreen, maximumBlue int64
+
+	for _, game := range games {
+		numberOfRed, numberOfGreen, numberOfBlue := getNumberOfRGBCubes(game)
+
+		if numberOfRed > maximumRed {
+			maximumRed = numberOfRed
+		}
+
+		if numberOfGreen > maximumGreen {
+			maximumGreen = numberOfGreen
+		}
+
+		if numberOfBlue > maximumBlue {
+			maximumBlue = numberOfBlue
+		}
+	}
+
+	return maximumRed * maximumGreen * maximumBlue
+}
+
+func getGameNumberAndGames(line string) (int64, []string) {
 	lineSplit := strings.Split(line, ":")
 
 	re := regexp.MustCompile(`(\d+)$`)
@@ -46,19 +87,7 @@ func determineIfValidGame(line string) int64 {
 
 	games := strings.Split(lineSplit[1], ";")
 
-	for _, game := range games {
-		numberOfRed, numberOfGreen, numberOfBlue := getNumberOfRGBCubes(game)
-		if numberOfRed > 12 || numberOfGreen > 13 || numberOfBlue > 14 {
-			return 0
-		}
-	}
-
-	return gameNumber
-}
-
-func calculateGamePower(game string) int64 {
-
-	return int64(0)
+	return gameNumber, games
 }
 
 func getNumberOfRGBCubes(game string) (int64, int64, int64) {
