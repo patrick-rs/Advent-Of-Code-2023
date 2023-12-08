@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"strings"
 	"testing"
 
@@ -19,9 +18,7 @@ func TestCheckForSymbol_ReturnsTrue(t *testing.T) {
 		inputArray = append(inputArray, []byte(l))
 	}
 
-	found := checkForSymbol(1, 4, 3, 6, inputArray)
-
-	fmt.Println(strings.Split(input, "\n"))
+	found := checkForSymbol(1, 4, 3, inputArray)
 
 	assert.True(t, found)
 }
@@ -37,9 +34,22 @@ func TestCheckForSymbol_ReturnsFalse(t *testing.T) {
 		inputArray = append(inputArray, []byte(l))
 	}
 
-	found := checkForSymbol(1, 4, 3, 6, inputArray)
-
-	fmt.Println(strings.Split(input, "\n"))
+	found := checkForSymbol(1, 4, 2, inputArray)
 
 	assert.True(t, found)
+}
+
+func TestCheckIfSymbol(t *testing.T) {
+	input := 'a'
+	assert.False(t, checkIfSymbol(input))
+	input = 'z'
+	assert.False(t, checkIfSymbol(input))
+	input = '1'
+	assert.False(t, checkIfSymbol(input))
+	input = '9'
+	assert.False(t, checkIfSymbol(input))
+	input = '!'
+	assert.True(t, checkIfSymbol(input))
+	input = ')'
+	assert.True(t, checkIfSymbol(input))
 }
