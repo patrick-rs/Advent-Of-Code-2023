@@ -7,6 +7,69 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func TestSumPartNumbersTopLeft(t *testing.T) {
+	input := `.#..
+..3.
+....`
+
+	assert.Equal(t, 3, sumPartNumbers(input))
+}
+
+func TestSumPartNumbersLeftSide(t *testing.T) {
+	input := `.#..
+3...
+....`
+
+	assert.Equal(t, 3, sumPartNumbers(input))
+}
+
+func TestSumPartNumbersRightSide(t *testing.T) {
+	input := `..#.
+...3
+....`
+
+	assert.Equal(t, 3, sumPartNumbers(input))
+}
+
+func TestSumPartNumbersBelowSide(t *testing.T) {
+	input := `....
+...3
+..#.`
+
+	assert.Equal(t, 3, sumPartNumbers(input))
+}
+
+func TestSumPartNumbersRightSideReturns0(t *testing.T) {
+	input := `....
+...3
+....`
+
+	assert.Equal(t, 0, sumPartNumbers(input))
+}
+
+func TestSumPartNumbersFirstNumberSide(t *testing.T) {
+	input := `1...
+.$..
+....`
+
+	assert.Equal(t, 1, sumPartNumbers(input))
+}
+
+func TestSumPartNumbers(t *testing.T) {
+	input := `467..114..
+...*......
+..35..633.
+......#...
+617*......
+.....+.58.
+..592.....
+......755.
+...$.*....
+.664.598..`
+
+	assert.Equal(t, 4361, sumPartNumbers(input))
+}
+
 func TestCheckForSymbol_ReturnsTrue(t *testing.T) {
 	input := `..........
 ..........
